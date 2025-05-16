@@ -46,13 +46,25 @@ class DefaultSearchViewState extends SearchViewState {
             ),
             Row(
               children: [
-                IconButton(
-                  onPressed: () {
-                    widget.showEmojiView();
-                  },
-                  color: widget.config.searchViewConfig.buttonIconColor,
-                  icon: const Icon(
-                    Icons.arrow_back,
+                Container(
+                  height: 48.0,
+                  width: 48.0,
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      24.0,
+                    ),
+                  ),
+                  child: Material(
+                    child: InkWell(
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: widget.config.searchViewConfig.buttonIconColor,
+                      ),
+                      onTap: () {
+                        widget.showEmojiView();
+                      },
+                    ),
                   ),
                 ),
                 Expanded(
@@ -64,8 +76,7 @@ class DefaultSearchViewState extends SearchViewState {
                       border: InputBorder.none,
                       hintText: widget.config.searchViewConfig.hintText,
                       hintStyle: widget.config.searchViewConfig.hintTextStyle,
-                      contentPadding:
-                          const EdgeInsets.symmetric(horizontal: 16),
+                      contentPadding: const EdgeInsets.only(right: 16),
                     ),
                   ),
                 ),

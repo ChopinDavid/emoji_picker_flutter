@@ -16,24 +16,24 @@ class _DefaultBottomActionBarState extends State<DefaultBottomActionBar> {
   Widget build(BuildContext context) {
     return Container(
       color: widget.config.bottomActionBarConfig.backgroundColor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _buildSearchViewButton(),
-          _buildBackspaceButton(),
-        ],
-      ),
+      child: _buildSearchViewButton(),
     );
   }
 
   Widget _buildSearchViewButton() {
     if (widget.config.bottomActionBarConfig.showSearchViewButton) {
-      return CircleAvatar(
-        backgroundColor: widget.config.bottomActionBarConfig.buttonColor,
-        child: SearchButton(
-          widget.config,
-          widget.showSearchView,
-          widget.config.bottomActionBarConfig.buttonIconColor,
+      return ClipRRect(
+        clipBehavior: Clip.hardEdge,
+        borderRadius: BorderRadius.circular(1000),
+        child: Material(
+          color: widget.config.bottomActionBarConfig.buttonColor,
+          child: InkWell(
+            child: SearchButton(
+              widget.config,
+              widget.showSearchView,
+              widget.config.bottomActionBarConfig.buttonIconColor,
+            ),
+          ),
         ),
       );
     }

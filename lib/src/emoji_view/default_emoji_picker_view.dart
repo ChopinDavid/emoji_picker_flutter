@@ -53,26 +53,30 @@ class _DefaultEmojiPickerViewState extends State<DefaultEmojiPickerView>
         return EmojiContainer(
           color: widget.config.emojiViewConfig.backgroundColor,
           buttonMode: widget.config.emojiViewConfig.buttonMode,
-          child: Column(
+          child: Stack(
+            alignment: Alignment.bottomLeft,
             children: [
-              widget.config.viewOrderConfig.top,
-              widget.config.viewOrderConfig.middle,
-              widget.config.viewOrderConfig.bottom,
-            ].map(
-              (item) {
-                switch (item) {
-                  case EmojiPickerItem.categoryBar:
-                    // Category view
-                    return _buildCategoryView();
-                  case EmojiPickerItem.emojiView:
-                    // Emoji view
-                    return _buildEmojiView(emojiSize, emojiBoxSize);
-                  case EmojiPickerItem.searchBar:
-                    // Search Bar
-                    return _buildBottomSearchBar();
-                }
-              },
-            ).toList(),
+              Column(
+                children: [
+                  widget.config.viewOrderConfig.top,
+                  widget.config.viewOrderConfig.middle,
+                ].map(
+                  (item) {
+                    switch (item) {
+                      case EmojiPickerItem.categoryBar:
+                        // Category view
+                        return _buildCategoryView();
+                      case EmojiPickerItem.emojiView:
+                        // Emoji view
+                        return _buildEmojiView(emojiSize, emojiBoxSize);
+                      default:
+                        return Container();
+                    }
+                  },
+                ).toList(),
+              ),
+              _buildBottomSearchBar(),
+            ],
           ),
         );
       },
