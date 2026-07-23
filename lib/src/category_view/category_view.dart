@@ -50,6 +50,31 @@ IconData getIconForCategory(CategoryIcons categoryIcons, Category category) {
   }
 }
 
+/// Returns the accessible name for the category, used as the category
+/// tab's semantic label since the tab otherwise renders an icon only.
+String getNameForCategory(Category category) {
+  switch (category) {
+    case Category.RECENT:
+      return 'Recent';
+    case Category.SMILEYS:
+      return 'Smileys';
+    case Category.ANIMALS:
+      return 'Animals';
+    case Category.FOODS:
+      return 'Food';
+    case Category.TRAVEL:
+      return 'Travel';
+    case Category.ACTIVITIES:
+      return 'Activities';
+    case Category.OBJECTS:
+      return 'Objects';
+    case Category.SYMBOLS:
+      return 'Symbols';
+    case Category.FLAGS:
+      return 'Flags';
+  }
+}
+
 /// Template class for custom implementation
 /// Inhert this class to create your own category view state
 class CategoryViewState<T extends CategoryView> extends State<T>

@@ -55,8 +55,12 @@ class DefaultCategoryTabBar extends StatelessWidget {
 
   Widget _buildCategoryTab(int index, Category category) {
     return Tab(
-      icon: Icon(
-        getIconForCategory(config.categoryViewConfig.categoryIcons, category),
+      icon: Semantics(
+        label: getNameForCategory(category),
+        excludeSemantics: true,
+        child: Icon(
+          getIconForCategory(config.categoryViewConfig.categoryIcons, category),
+        ),
       ),
     );
   }
